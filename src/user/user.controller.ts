@@ -1,5 +1,6 @@
 import { Controller, Inject } from '@nestjs/common';
 import { GetUser } from './getUser.service';
+import { User } from './user';
 
 @Controller('user')
 
@@ -40,3 +41,7 @@ export class UserController {
     console.log(`Name: ${this.name} Age: ${this.age} Users: ${this.getUser.getUser()} `);
   }
 }
+
+const getUserInstance = new GetUser();
+const c1 = new UserController(getUserInstance, "Deswal", 22);
+console.log(c1);

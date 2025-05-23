@@ -1,9 +1,8 @@
 
-
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { GetUser } from './getUser.service';
-import { TestService } from './test.service';
+// import { TestService } from './test.service';
 
 //problem
 
@@ -25,25 +24,25 @@ import { TestService } from './test.service';
 
 // sol 2
 
-// @Module({
-//   controllers: [],
-//   providers: [
-//     GetUser,
-//     {
-//       provide: UserController,
-//       useFactory: (getUser: GetUser) => {
-//         const name = 'Deswal';
-//         const age = 54;
-//         return new UserController(getUser, name, age);
-//       },
-//       inject: [GetUser],
-//     },
-//   ],
-// })
+@Module({
+  controllers: [],
+  providers: [
+    GetUser,
+    {
+      provide: UserController,
+      useFactory: (getUser: GetUser) => {
+        const name = 'Shivam';
+        const age = 22;
+        return new UserController(getUser, name, age);
+      },
+      inject: [GetUser],
+    },
+  ],
+})
 
 //simple user.ts
-@Module({
-  providers: [GetUser, TestService],
-})
+// @Module({
+//   providers: [GetUser, TestService],
+// })
 
 export class UserModule {}
